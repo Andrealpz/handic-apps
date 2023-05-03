@@ -61,7 +61,7 @@
 ?>
 
 <main id="inscription">
-        <form action="" method="post" enctype="multipart/form-data" class="form_inscri">
+        <form action="" method="post" enctype="multipart/form-data" class="inscription_infos">
             <div class="containerInscription">
                 <div class="infos">
                     <h1>INFOS PROFIL</h1>

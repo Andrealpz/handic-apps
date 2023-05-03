@@ -30,6 +30,7 @@ main#inscription {
     background-size: 115%;
     object-fit:cover;
     background-attachment: fixed;
+    height: 100%;
 }
 
 main {
@@ -296,6 +297,32 @@ input:focus::placeholder {
 
 #img_profil {
     height: 100%;
+}
+
+/* ********************************* INSCRIPTION INFOS *********************** */
+
+.inscription_infos {
+    margin: 20px auto;
+    width: 50%;
+}
+
+.inscription_infos .containerInscription {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.inscription_infos .containerInscription select,input{
+    padding: 10px;
+    margin: 20px;
+}
+
+.inscription_infos .containerInscription button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 /* ********************************* PROFIL *********************** */
