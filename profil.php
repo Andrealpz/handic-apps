@@ -1,39 +1,101 @@
 <?php 
     require_once "header.php";
 
-    // if(isset($_POST)){
-    //     if(isset($_POST['id']) && !empty($_POST['id'])
-    //         && isset($_POST['taille']) && !empty($_POST['taille'])
-    //         && isset($_POST['handicap']) && !empty($_POST['handicap'])
-    //         && isset($_POST['enfant']) && !empty($_POST['enfant'])
-    //         && isset($_POST['fumer']) && !empty($_POST['fumer'])
-    //         && isset($_POST['langue']) && !empty($_POST['langue'])
-    //         && isset($_POST['diplome']) && !empty($_POST['diplome'])){
+    $dsn = "mysql:host=localhost;port=3306;dbname=handicappsAppli;charset=utf8";
+    $dbUser = "root";
+    $dbPassword = "";
+    $db = new PDO($dsn, $dbUser, $dbPassword);
+    $id = strip_tags($_SESSION['id']);
 
-    //         $id = strip_tags($_GET['id']);
-    //         $taille = strip_tags($_POST['taille']);
-    //         $handicap = strip_tags($_POST['handicap']);
-    //         $enfant = strip_tags($_POST['enfant']);
-    //         $fumer = strip_tags($_POST['fumer']);
-    //         $langue = strip_tags($_POST['langue']);
-    //         $diplome = strip_tags($_POST['diplome']);
+    $sql = "SELECT * FROM utilisateurs WHERE `id`=:id;";
+    $query = $db->prepare($sql);
+    $query->bindValue(':id', $id, PDO::PARAM_STR);
+    $query->execute();
+    $result = $query->fetch();
+
+    if(isset($_POST)){
+        if(isset($_SESSION['id'])){
+
+            if(isset($_POST['taille']) && !empty($_POST['taille'])){
+                $taille = strip_tags($_POST['taille']);
+                $sql = "UPDATE `utilisateurs` SET `taille`=:taille  WHERE `id`=:id;";
+                $query = $db->prepare($sql);
+                $query->bindValue(':taille', $taille, PDO::PARAM_INT);
+                $query->bindValue(':id', $id, PDO::PARAM_INT);
+                $query->execute();
+                header('location: profil.php');
+            }
+            if(isset($_POST['handicap']) && !empty($_POST['handicap'])){
+                $handicap = strip_tags($_POST['handicap']);
+                $sql = "UPDATE `utilisateurs` SET `handicap`=:handicap  WHERE `id`=:id;";
+                $query = $db->prepare($sql);
+                $query->bindValue(':handicap', $handicap, PDO::PARAM_STR);
+                $query->bindValue(':id', $id, PDO::PARAM_INT);
+                $query->execute();
+                header('location: profil.php');
+            }
+            if(isset($_POST['enfant']) && !empty($_POST['enfant'])){
+                $enfant = strip_tags($_POST['enfant']);
+                $sql = "UPDATE `utilisateurs` SET `enfant`=:enfant  WHERE `id`=:id;";
+                $query = $db->prepare($sql);
+                $query->bindValue(':enfant', $enfant, PDO::PARAM_STR);
+                $query->bindValue(':id', $id, PDO::PARAM_INT);
+                $query->execute();
+                header('location: profil.php');
+            }
+            if(isset($_POST['fumer']) && !empty($_POST['fumer'])){
+                $fumer = strip_tags($_POST['fumer']);
+                $sql = "UPDATE `utilisateurs` SET `fumer`=:fumer  WHERE `id`=:id;";
+                $query = $db->prepare($sql);
+                $query->bindValue(':fumer', $fumer, PDO::PARAM_STR);
+                $query->bindValue(':id', $id, PDO::PARAM_INT);
+                $query->execute();
+                header('location: profil.php');
+            }
+            if(isset($_POST['langue']) && !empty($_POST['langue'])){
+                $langue = strip_tags($_POST['langue']);
+                $sql = "UPDATE `utilisateurs` SET `langue`=:langue  WHERE `id`=:id;";
+                $query = $db->prepare($sql);
+                $query->bindValue(':langue', $langue, PDO::PARAM_STR);
+                $query->bindValue(':id', $id, PDO::PARAM_INT);
+                $query->execute();
+                header('location: profil.php');
+            }
+            if(isset($_POST['diplome']) && !empty($_POST['diplome'])){
+                $diplome = strip_tags($_POST['diplome']);
+                $sql = "UPDATE `utilisateurs` SET `diplome`=:diplome  WHERE `id`=:id;";
+                $query = $db->prepare($sql);
+                $query->bindValue(':diplome', $diplome, PDO::PARAM_STR);
+                $query->bindValue(':id', $id, PDO::PARAM_INT);
+                $query->execute();
+                header('location: profil.php');
+            }
+
+
+            
+            
+            // $handicap = strip_tags($_POST['handicap']);
+            // $enfant = strip_tags($_POST['enfant']);
+            // $fumer = strip_tags($_POST['fumer']);
+            // $langue = strip_tags($_POST['langue']);
+            // $diplome = strip_tags($_POST['diplome']);
     
-    //         $sql = "UPDATE `utilisateurs` SET `taille`=:taille, `handicap`=:handicap, `enfant`=:enfant, `fumer`=:fumer, `langue`=:langue, `diplome`=:diplome WHERE `id`=:id;";
+            // $sql = "UPDATE `utilisateurs` SET `taille`=:taille, `handicap`=:handicap, `enfant`=:enfant, `fumer`=:fumer, `langue`=:langue, `diplome`=:diplome WHERE `id`=:id;";
     
-    //         $query = $db->prepare($sql);
+            // $query = $db->prepare($sql);
     
-    //         $query->bindValue(':taille', $taille, PDO::PARAM_STR);
-    //         $query->bindValue(':handicap', $handicap, PDO::PARAM_STR);
-    //         $query->bindValue(':enfant', $enfant, PDO::PARAM_INT);
-    //         $query->bindValue(':fumer', $fumer, PDO::PARAM_INT);
-    //         $query->bindValue(':langue', $langue, PDO::PARAM_INT);
-    //         $query->bindValue(':diplome', $diplome, PDO::PARAM_INT);
-    //         $query->bindValue(':id', $id, PDO::PARAM_INT);
+            
+            // $query->bindValue(':handicap', $handicap, PDO::PARAM_STR);
+            // $query->bindValue(':enfant', $enfant, PDO::PARAM_INT);
+            // $query->bindValue(':fumer', $fumer, PDO::PARAM_INT);
+            // $query->bindValue(':langue', $langue, PDO::PARAM_INT);
+            // $query->bindValue(':diplome', $diplome, PDO::PARAM_INT);
+            
     
-    //         $query->execute();
-    //         $result = $_SE->fetchAll();
-    //     }
-    // }
+            // $query->execute();
+            // $result = $query->fetchAll();
+        }
+    }
 ?>
 
 
@@ -72,20 +134,20 @@
             <div class="infos-profil">
             <div class="container_infos">
                 
-            <form class="inf">
+            <form class="inf" method="post">
             <div class="os">
                 <i class="fa-solid fa-ruler"></i>
                 <input type="number" name="taille" placeholder="Taille" class="inputInfos" 
-                min="60" max="220" value="<?= $_SESSION['taille'] ?>" disabled>
+                min="60" max="220" value="<?= $result['taille'] ?>" disabled>
             </div>
                 <input type="button" value="Modifier" class="button">
                 <input type="submit" value="Valider" class="buttonValider">    
             </form>
-            <form class="inf">
+            <form class="inf" method="post">
             <div class="os">
                 <i class="fa-brands fa-accessible-icon"></i>
                 <select name="handicap" id="handicap" class="inputInfos" disabled>
-                        <option value="<?= $_SESSION['handicap'] ?>"><?= $_SESSION['handicap'] ?></option>
+                        <option value="<?= $result['handicap'] ?>"><?= $result['handicap'] ?></option>
                         <option value="Moteur">Moteur</option>
                         <option value="Visuel">Visuel</option>
                         <option value="Auditif">Auditif</option>
@@ -97,11 +159,11 @@
                 <input type="button" value="Modifier" class="button">
                 <input type="submit" value="Valider" class="buttonValider"> 
             </form>
-            <form class="inf">
+            <form class="inf" method="post">
             <div class="os">
                 <i class="fa-solid fa-baby-carriage"></i>
                 <select name="enfant" class="inputInfos" disabled>
-                        <option value="<?= $_SESSION['enfant'] ?>"><?= $_SESSION['enfant'] ?></option>
+                        <option value="<?= $result['enfant'] ?>"><?= $result['enfant'] ?></option>
                         <option value="Peut-être">Peut-être</option>
                         <option value="J'en ai déjà">J'en ai déjà</option>
                         <option value="Je ne sais pas">Je ne sais pas</option>
@@ -112,11 +174,11 @@
             </form>
             </div>
             <div class="container_infos">
-            <form class="inf">
+            <form class="inf" method="post">
             <div class="os">
                 <i class="fa-solid fa-smoking"></i>
                 <select name="fumer" class="inputInfos" disabled>
-                        <option value="<?= $_SESSION['fumer'] ?>"><?= $_SESSION['fumer'] ?></option>
+                        <option value="<?= $result['fumer'] ?>"><?= $result['fumer'] ?></option>
                         <option value="Je ne fume pas">Je ne fume pas</option>
                         <option value="Plusieurs fois par jours">Plusieurs fois par jours</option>
                         <option value="Rarement">Rarement</option>
@@ -125,26 +187,26 @@
                 <input type="button" value="Modifier" class="button">
                 <input type="submit" value="Valider" class="buttonValider"> 
             </form>
-            <form class="inf">
+            <form class="inf" method="post">
             <div class="os">
                 <i class="fa-sharp fa-solid fa-language"></i>
                 <select name="langue" class="inputInfos" disabled>
-                        <option value="<?= $_SESSION['langue'] ?>"><?= $_SESSION['langue'] ?></option>
+                        <option value="<?= $result['langue'] ?>"><?= $result['langue'] ?></option>
                         <option value="Français">Français</option>
                         <option value="Anglais">Anglais</option>
-                        <option value="Rarement">Espagnole</option>
-                        <option value="Rarement">Italiens</option>
-                        <option value="Rarement">Allemand</option>
+                        <option value="Espagnole">Espagnole</option>
+                        <option value="Italiens">Italiens</option>
+                        <option value="Allemand">Allemand</option>
                 </select>
             </div>
                 <input type="button" value="Modifier" class="button">
                 <input type="submit" value="Valider" class="buttonValider"> 
             </form>
-            <form class="inf">
+            <form class="inf" method="post">
             <div class="os">
                 <i class="fa-solid fa-award"></i>
                 <select name="diplome" class="inputInfos" disabled>
-                        <option value="<?= $_SESSION['diplome'] ?>"><?= $_SESSION['diplome'] ?></option>
+                        <option value="<?= $result['diplome'] ?>"><?= $result['diplome'] ?></option>
                         <option value="Sans diplôme">Sans diplôme</option>
                         <option value="Brevet des collèges">Brevet des collèges</option>
                         <option value="Bac ou +">Bac ou +</option>

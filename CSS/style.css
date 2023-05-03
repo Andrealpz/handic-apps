@@ -313,7 +313,7 @@ input:focus::placeholder {
     height: 100%;
 }
 
-.inscription_infos .containerInscription select,input{
+.inscription_infos .containerInscription select{
     padding: 10px;
     margin: 20px;
 }

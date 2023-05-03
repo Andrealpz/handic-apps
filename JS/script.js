@@ -1,7 +1,6 @@
 const buttons = document.querySelectorAll(".button");
 const buttonValiders = document.querySelectorAll(".buttonValider");
 const inputs = document.querySelectorAll(".inputInfos");
-console.log(buttons);
 
 
 
